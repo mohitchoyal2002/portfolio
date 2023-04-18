@@ -1,0 +1,84 @@
+{
+  "frontend": [
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "React",
+    "Redux",
+    "TailwindCSS",
+    "Material UI"
+  ],
+  "backend": [
+    "Java",
+    "Node",
+    "Express",
+    "MySQL",
+    "MongoDB",
+    "C++",
+    "Restful APIs"
+  ],
+  "other": [
+    "Communication",
+    "Git",
+    "Github",
+    "VS Code",
+    "Netlify",
+    "TypeScript",
+    "Problem-Solving"
+  ],
+  "projects": [
+    {
+      "title": "eCommerce App",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fGVjb21tZXJjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+      "tech": "React, Node, Express, MongoDB, Redux, Email API, Google Auth, VS Code, Netlify",
+      "live": false,
+      "status": "Working",
+      "github": "https://github.com/mohitchoyal2002/e-commerce",
+      "discription": "It is web-based Application like Amazon or Flipkart where Seller can sell their product and customer can sell their product."
+    },
+    {
+      "title": "e-assessment App",
+      "image": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXNzZXNzbWVudHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
+      "tech": "React, Node, Express, MongoDB, Redux, Email API, Google Auth, VS Code, Netlify",
+      "live": false,
+      "status":"Done",
+      "github": "https://github.com/mohitchoyal2002/tao-clone",
+      "discription": "It is web-based Application where any organization like school college for taking online test and student can login with their password which will sent to user by perticular organization."
+    },
+    {
+      "title": "tesla clone",
+      "image": "https://images.unsplash.com/photo-1554744512-d6c603f27c54?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8dGVzbGF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60",
+      "tech": "React, Styled Components, VS Code, Netlify",
+      "live": true,
+      "status":"Done",
+      "github": "https://github.com/mohitchoyal2002/tesla-clone",
+      "live_link": "https://tesla-clone-by-mohit.netlify.app/",
+      "discription": "It is web-based Application exactly like Tesla official website. I have only implemented the mfrontend part n this project."
+    }
+  ],
+  "experience":[
+    {
+      "logo": "https://www.tcsion.com/dotcom/TCSSMB/images/TCS-iON-Logo-RGB-Color-white.png",
+      "employer": "TCS ION",
+      "position": "Web Developer Intern",
+      "duration": "Apr 2022 - Jun 2022",
+      "tech": "HTML, CSS, JavaScript, reCaptcha",
+      "work": "I made a reCaptcha service to secure a web applications using HTML, CSS, JavaScript and learned how to implement API."
+    },
+    {
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8XPtEbkOn6G3pu5HC6jIULt5C22fPLyMkQcSVDyNOg&s",
+      "employer": "Zummit Infolabs",
+      "position": "Junior Web Developer",
+      "duration": "Nov 2022 - Mar 2023",
+      "tech": "HTML, CSS, JavaScript, React, Node, Express, MongoDB",
+      "work": "I worked on an e-assessment Project as a Full stack Developer. My Tech Stack was MERN(MongoDB, ExpressJs, ReactJS, Node).  I was Tech Lead at Zummit Infolabs and worked on ZAF (Zummit AI Framework)."
+    },
+    {
+      "logo": "https://media.licdn.com/dms/image/C510BAQFi3XBX2O5bNg/company-logo_200_200/0/1534863231558?e=2147483647&v=beta&t=ggL2lNonhdibrMSn-EXkXMwDQ_xxljKPeHTtJcbHWeM",
+      "employer": "Indore Munciple Corporation",
+      "position": "Intern",
+      "duration": "Apr 2022 - Current",
+      "work": "Currently Working on smart dustbin Project for smart city."
+    }
+  ]
+}
