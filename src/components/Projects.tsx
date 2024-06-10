@@ -15,7 +15,10 @@ const Projects = () => {
                 </div>
                 <div className='min-h-50 flex flex-col justify-between bg-white py-4 px-2 lg:px-8 md:px-5 rounded-b-lg'>
                   <div>
-                    <h1 className='text-blue-950 font-bold text-lg capitalize mb-4'>{project.title}</h1>
+                    <div className='text-blue-950 mb-4 flex items-center gap-2'>
+                      <h1 className='font-bold text-lg capitalize'>{project.title}</h1>
+                      <span className='text-xs bg-blue-950 text-white font-bold p-1 rounded-lg'>{project.type}</span>
+                    </div>
                     <div className='flex justify-center mb-4'>
                     <p className='text-gray-600 font-medium text-base'>
                       {project.discription}
@@ -31,7 +34,10 @@ const Projects = () => {
                     {
                       project.live ? <a href={project.live_link} target='_blank' className='p-2 bg-white border border-blue-950 rounded-md text-blue-950 font-semibold text-sm'>See Live</a>:<div className='hidden'></div>
                     }
-                    <a href={project.github} target='_blank' className='p-2 bg-blue-950 rounded-md text-white font-semibold text-sm'>Source Code</a>
+                    {
+                      project.github ?
+                      <a href={project.github} target='_blank' className='p-2 bg-blue-950 rounded-md text-white font-semibold text-sm'>Source Code</a>:<div className='hidden'></div>
+                    }
                   </div>
                 </div>
               </div>

@@ -3,27 +3,31 @@
     "HTML",
     "CSS",
     "JavaScript",
+    "JQuery",
     "React",
     "Redux",
-    "TailwindCSS",
-    "Material UI"
+    "HAML",
+    "ERB",
+    "TailwindCSS"
   ],
   "backend": [
-    "Java",
+    "Ruby",
+    "Ruby On Rails",
     "Node",
     "Express",
+    "GraphQL",
     "MySQL",
-    "MongoDB",
-    "C++",
-    "Restful APIs"
+    "PostgreSQL"
   ],
   "other": [
     "Communication",
+    "DSA",
     "Git",
-    "Github",
-    "VS Code",
+    "Cloudflare CDN",
+    "Shopify API",
     "Netlify",
     "TypeScript",
+    "Salesforce Auth",
     "Problem-Solving"
   ],
   "projects": [
@@ -32,8 +36,9 @@
       "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fGVjb21tZXJjZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
       "tech": "React, Node, Express, MongoDB, Redux, Email API, Google Auth, VS Code, Netlify",
       "live": false,
-      "status": "Working",
+      "status": "Completed (Not deployed)",
       "github": "https://github.com/mohitchoyal2002/e-commerce",
+      "type": "Personal",
       "discription": "It is web-based Application like Amazon or Flipkart where Seller can sell their product and customer can sell their product."
     },
     {
@@ -43,6 +48,7 @@
       "live": false,
       "status":"Done",
       "github": "https://github.com/mohitchoyal2002/tao-clone",
+      "type": "Personal",
       "discription": "It is web-based Application where any organization like school college for taking online test and student can login with their password which will sent to user by perticular organization."
     },
     {
@@ -52,8 +58,41 @@
       "live": true,
       "status":"Done",
       "github": "https://github.com/mohitchoyal2002/tesla-clone",
+      "type": "Personal",
       "live_link": "https://tesla-clone-by-mohit.netlify.app/",
       "discription": "It is web-based Application exactly like Tesla official website. I have only implemented the mfrontend part n this project."
+    },
+    {
+      "title": "NXZ Sound",
+      "image": "data:image/png;base64,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",
+      "tech": "Ruby on Rails, Js, Active Admin, Active Job, Sidekiq, ACR Cloud",
+      "live": true,
+      "status":"Done",
+      "github": null,
+      "type": "Official",
+      "live_link": "https://nxzsound.com/",
+      "discription": "It is Music Streaming Application Where user can listen music. I worked as BE (ROR) Developer."
+    },
+    {
+      "title": "CxWork",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgtVkxVwrxxHvw9vqCa3olS0XHIdeVKFPwOQ&s",
+      "tech": "Ruby on Rails, React, Salesforce, Omniauth, Sidekiq Job",
+      "live": false,
+      "status":"Live",
+      "github": null,
+      "type": "Official",
+      "discription": "CxWork is a Saas CRM based where user can manage there emails, meeting, salesforce account in one place I worked as a full stack developer and worked on salesforce APIs and Gmail API."
+    },
+    {
+      "title": "Uphance",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu1-2l5Cd-kqX6VVDGu_iXtZYByTnDpSfUaw&s",
+      "tech": "Ruby on Rails, Haml, Js, Cloudflare CDN, Shopify",
+      "live": true,
+      "status":"Live",
+      "github": null,
+      "type": "Official",
+      "live_link": "https://www.uphance.com/",
+      "discription": "Contributed as a web developer at Uphance, a comprehensive platform empowering businesses with streamlined inventory management, sales, and production workflows."
     }
   ],
   "experience":[
@@ -74,11 +113,13 @@
       "work": "I worked on an e-assessment Project as a Full stack Developer. My Tech Stack was MERN(MongoDB, ExpressJs, ReactJS, Node).  I was Tech Lead at Zummit Infolabs and worked on ZAF (Zummit AI Framework)."
     },
     {
-      "logo": "https://media.licdn.com/dms/image/C510BAQFi3XBX2O5bNg/company-logo_200_200/0/1534863231558?e=2147483647&v=beta&t=ggL2lNonhdibrMSn-EXkXMwDQ_xxljKPeHTtJcbHWeM",
-      "employer": "Indore Munciple Corporation",
-      "position": "Intern",
-      "duration": "Apr 2022 - Current",
-      "work": "Currently Working on smart dustbin Project for smart city."
+      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ42RrTiwHtmuYPvocgk04N5r6fwe8VSSfUXQ&s",
+      "employer": "Shriffle Technologies",
+      "position": "Associate Software Developer",
+      "duration": "May 2023 - Current",
+      "tech": "Ruby, Ruby on Rails, Js, JQuery, PostgreSQL, React",
+      "work": " I played an integral role in numerous web-based projects such as Uphance, NXZ Sound, and Cx Work, where I honed my skills and expanded my technical repertoire. This dynamic environment fostered continuous learning and innovation, empowering me to tackle challenges head-on and deliver high-quality solutions. Through collaborative efforts and hands-on experience, I gained invaluable insights into project management, client communication, and the intricacies of web development."
     }
-  ]
+  ],
+  "aboutMe": "I thrive in collaborative environments, where I actively contribute my problem-solving skills and attention to detail to deliver high-quality work on time. With a passion for continuous learning, I am committed to staying updated with the latest technologies and best practices in web development."
 }
