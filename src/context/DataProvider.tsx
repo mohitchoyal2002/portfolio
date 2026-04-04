@@ -22,10 +22,10 @@ export const DataProvider = ({ children }: { children: React.ReactNode }) => {
             <span className="text-white font-extrabold text-2xl tracking-tighter">MC</span>
           </div>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600 mb-3 animate-fade-in">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600 mb-3 animate-fade-in text-center px-4 leading-tight">
           Welcome to my Workspace
         </h2>
-        <p className="text-sky-700/70 font-bold animate-pulse text-lg tracking-widest uppercase">
+        <p className="text-sky-700/70 font-bold animate-pulse text-base sm:text-lg tracking-widest uppercase text-center px-4">
           Crafting the digital experience...
         </p>
       </div>
