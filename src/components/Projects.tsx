@@ -1,5 +1,6 @@
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 import { useProfile } from '../context/DataProvider'
+import defaultProjectImage from '../assets/project.png'
 
 const Projects = () => {
   const { projects } = useProfile();
@@ -12,7 +13,7 @@ const Projects = () => {
             return (
               <div key={index} className='w-full max-w-md mx-auto group bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:bg-white/60 flex flex-col'>
                 <div className='h-56 sm:h-64 w-full overflow-hidden relative'>
-                  <img src={project.image} alt={project.name} className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110' />
+                  <img src={project.image || defaultProjectImage} alt={project.name} className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110' />
                   <div className='absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6'>
                     <span className='text-white font-semibold flex flex-wrap gap-2'>
                       {project.tech.split(', ').map((t: any) => <span key={t} className='px-2 py-1 bg-white/20 rounded-md text-xs backdrop-blur-sm shadow-sm'>{t}</span>)}

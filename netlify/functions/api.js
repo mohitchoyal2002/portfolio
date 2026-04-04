@@ -31,9 +31,15 @@ const safeGetText = (prop) => {
     return '';
 };
 
-const safeGetUrl = (prop) => {
+const safeGetUrl = (prop, fallback = null) => {
+    if (prop && prop.type === 'url' && prop.url) return prop.url;
+    if (prop && prop.type === 'files' && prop.files && prop.files.length > 0) {
+        const fileObj = prop.files[0];
+        if (fileObj.type === 'file' && fileObj.file) return fileObj.file.url;
+        if (fileObj.type === 'external' && fileObj.external) return fileObj.external.url;
+    }
     if (prop && prop.url) return prop.url;
-    return null;
+    return fallback;
 };
 
 const router = express.Router();
