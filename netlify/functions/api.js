@@ -5,10 +5,6 @@ import axios from 'axios';
 import NodeCache from 'node-cache';
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const app = express();
 const cache = new NodeCache({ stdTTL: 60 });
@@ -112,7 +108,7 @@ router.get('/profile', async (req, res) => {
   } catch (error) {
     console.error('Error fetching Notion data:', error.message);
     try {
-        const fallbackData = JSON.parse(fs.readFileSync(path.join(__dirname, '../../src/assets/skills.json'), 'utf-8'));
+        const fallbackData = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'src/assets/skills.json'), 'utf-8'));
         return res.json(fallbackData);
     } catch (e) {
         return res.status(500).json({ error: 'Fallback Failed' });
