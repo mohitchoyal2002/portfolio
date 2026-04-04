@@ -6,17 +6,19 @@ import About from '../components/About'
 import Projects from '../components/Projects'
 import ContactMe from '../components/ContactMe'
 import Experience from '../components/Experience'
+import Education from '../components/Education'
 
 const MainPage = () => {
   return (
     <div>
-      <Header/>
-      <Intro/>
-      <About/>
-      <Skills/>
-      <Projects/>
-      <Experience/>
-      <ContactMe/>
+      <Header />
+      <Intro />
+      <About />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Education />
+      <ContactMe />
     </div>
   )
 }

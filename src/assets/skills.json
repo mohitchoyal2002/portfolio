@@ -132,5 +132,27 @@
       "work": " I played an integral role in numerous web-based projects such as Uphance, NXZ Sound, and Cx Work, where I honed my skills and expanded my technical repertoire. This dynamic environment fostered continuous learning and innovation, empowering me to tackle challenges head-on and deliver high-quality solutions. Through collaborative efforts and hands-on experience, I gained invaluable insights into project management, client communication, and the intricacies of web development."
     }
   ],
+  "education": [
+    {
+      "institute": "Rajiv Gandhi Prodyogiki Vishwavidyalaya",
+      "degree": "Bachelor's Degree",
+      "duration": "2019 - 2023"
+    },
+    {
+      "institute": "HackerRank",
+      "degree": "Problem Solving (Basic) Certificate",
+      "duration": "Apr 2022"
+    },
+    {
+      "institute": "Udemy",
+      "degree": "Core JAVA By Abdul Bari",
+      "duration": "Jun 2021"
+    },
+    {
+      "institute": "Udemy",
+      "degree": "C Programming",
+      "duration": "Apr 2021"
+    }
+  ],
   "aboutMe": "I thrive in collaborative environments, where I actively contribute my problem-solving skills and attention to detail to deliver high-quality work on time. With a passion for continuous learning, I am committed to staying updated with the latest technologies and best practices in web development."
 }
