@@ -1,45 +1,55 @@
 import React, { useState } from 'react'
 import { GrStackOverflow } from 'react-icons/gr'
-import { Link } from 'react-router-dom'
-import { RxHamburgerMenu } from 'react-icons/rx'
+import { RxHamburgerMenu, RxCross2 } from 'react-icons/rx'
 
 const Header = () => {
-
   const [open, setOpen] = useState(false)
+
+  const navLinks = [
+    { label: 'About Me', href: '#about' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Experience', href: '#experience' },
+    { label: 'Education', href: '#education' },
+    { label: 'Contact Me', href: '#contact-me' },
+  ]
 
   return (
     <>
-      <div className='fixed w-full'>
-        <div className='w-full py-4 flex items-center justify-between px-5 lg:justify-around md:justify-around font-nunito bg-white  bg-opacity-50 sticky border-b' style={{backdropFilter: "blur(20px)"}} >
-        <a href="#home">
-          <div className='rounded-full py-2 px-4 flex items-center gap-2 bg-white'>
-            <GrStackOverflow className='text-sky-500 text-base lg:text-xl md:text-xl' />
-            <h1 className='text-sm font-bold text-blue-950  lg:text-xl md:text-xl'>MohitWebDev</h1>
-          </div>
+      <div className='fixed w-full z-50 top-0 left-0 transition-all duration-300'>
+        <div className='w-full py-4 flex items-center justify-between px-6 lg:justify-around font-nunito bg-white/70 backdrop-blur-lg border-b border-white/20 shadow-sm'>
+          <a href="#home" className='group'>
+            <div className='rounded-full py-2 px-4 flex items-center gap-2 bg-gradient-to-r from-sky-50 to-white shadow-sm border border-sky-100 transition-all duration-300 group-hover:shadow-md group-hover:scale-105'>
+              <GrStackOverflow className='text-sky-500 text-xl' />
+              <h1 className='text-lg font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-900 to-sky-600 tracking-tight'>MohitWebDev</h1>
+            </div>
           </a>
-          <div className='hidden items-center gap-8 lg:flex md:flex'>
-            <a href='#about' className='font-semibold text-gray-600'>About Me</a>
-            <a href='#skills' className='font-semibold text-gray-600'>Skills</a>
-            <a href='#projects' className='font-semibold text-gray-600'>Projects</a>
-            <a href='#experience' className='font-semibold text-gray-600'>Experience</a>
-            <a href='#contact-me' className='font-semibold text-gray-600'>Contact Me</a>
 
+          <div className='hidden lg:flex md:flex items-center gap-8'>
+            {navLinks.map((link) => (
+              <a key={link.label} href={link.href} className='font-bold text-gray-600 hover:text-sky-500 transition-colors duration-300 relative group'>
+                {link.label}
+                <span className='absolute -bottom-1 left-0 w-0 h-0.5 bg-sky-500 transition-all duration-300 group-hover:w-full'></span>
+              </a>
+            ))}
           </div>
-          <div className='block md:hidden lg:hidden cursor-pointer' onClick={() => setOpen(!open)}>
-            <RxHamburgerMenu />
+
+          <div className='block md:hidden lg:hidden cursor-pointer p-2 rounded-lg bg-gray-50/50 hover:bg-gray-100/50 transition-colors' onClick={() => setOpen(!open)}>
+            {open ? <RxCross2 size={24} className='text-blue-950' /> : <RxHamburgerMenu size={24} className='text-blue-950' />}
           </div>
         </div>
       </div>
-      { open?
-        <div style={{backdropFilter: "blur(20px)"}} className='py-4 px-10 bg-sky-200 bg-opacity-20 flex flex-col gap-5 fixed top-20 right-5 rounded-xl shadow-custom' onClick={()=>setOpen(false)}>
-          <a href='#about' className='font-semibold text-gray-600'>About Me</a>
-          <a href='#skills' className='font-semibold text-gray-600'>Skills</a>
-          <a href='#projects' className='font-semibold text-gray-600'>Projects</a>
-          <a href='#experience' className='font-semibold text-gray-600'>Experience</a>
-          <a href='#contact-me' className='font-semibold text-gray-600'>Contact Me</a>
-        </div>:
-        <div className='w-0 h-0'></div>
-      }
+
+      {/* Mobile Menu */}
+      <div className={`fixed top-20 right-5 z-40 transition-all duration-300 ease-in-out transform origin-top-right ${open ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'}`}>
+        <div className='py-6 px-10 bg-white/90 backdrop-blur-xl border border-white/40 flex flex-col gap-6 rounded-2xl shadow-2xl'>
+          {navLinks.map((link) => (
+            <a key={link.label} href={link.href} onClick={() => setOpen(false)} className='font-bold text-lg text-gray-700 hover:text-sky-500 hover:translate-x-1 transition-all duration-300'>
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
     </>
   )
 }
