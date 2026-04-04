@@ -1,43 +1,45 @@
-import { projects } from '../assets/skills.json'
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
+import { useProfile } from '../context/DataProvider'
 
 const Projects = () => {
+  const { projects } = useProfile();
   return (
-    <div id='projects' className='py-6 px-4  bg-sky-300 font-nunito'>
-      <h1 className='text-3xl font-bold text-white text-center mb-6'>My Projects</h1>
-
-      <div className='flex flex-wrap items-start gap-10 justify-center py-4'>
+    <div id='projects' className='py-24 px-6 bg-gradient-to-br from-blue-50 to-sky-200 font-nunito w-full'>
+      <h1 className='text-4xl font-extrabold text-blue-950 text-center mb-16 tracking-tight'>Featured Projects</h1>
+      <div className='flex flex-wrap items-stretch gap-10 justify-center w-full max-w-7xl mx-auto'>
         {
-          projects.map((project) => {
+          projects.map((project: any, index: any) => {
             return (
-              <div className='rounded-lg w-96'>
-                <div className='h-80 w-full'>
-                  <img src={project.image} alt="" className='w-full h-full rounded-t-lg' />
-                </div>
-                <div className='min-h-50 flex flex-col justify-between bg-white py-4 px-2 lg:px-8 md:px-5 rounded-b-lg'>
-                  <div>
-                    <div className='text-blue-950 mb-4 flex items-center gap-2'>
-                      <h1 className='font-bold text-lg capitalize'>{project.title}</h1>
-                      <span className='text-xs bg-blue-950 text-white font-bold p-1 rounded-lg'>{project.type}</span>
-                    </div>
-                    <div className='flex justify-center mb-4'>
-                    <p className='text-gray-600 font-medium text-base'>
-                      {project.discription}
-                    </p>
-                    </div>
-                    <div className='flex justify-center'>
-                      <p className='text-blue-950 font-semibold text-base'>
-                        Tech Used: {project.tech}
-                      </p>
-                    </div>
+              <div key={index} className='w-full max-w-md mx-auto group bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:bg-white/60 flex flex-col'>
+                <div className='h-56 sm:h-64 w-full overflow-hidden relative'>
+                  <img src={project.image} alt={project.name} className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110' />
+                  <div className='absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6'>
+                    <span className='text-white font-semibold flex flex-wrap gap-2'>
+                      {project.tech.split(', ').map((t: any) => <span key={t} className='px-2 py-1 bg-white/20 rounded-md text-xs backdrop-blur-sm shadow-sm'>{t}</span>)}
+                    </span>
                   </div>
-                  <div className='flex items-center gap-5 mb-2'>
-                    {
-                      project.live ? <a href={project.live_link} target='_blank' className='p-2 bg-white border border-blue-950 rounded-md text-blue-950 font-semibold text-sm'>See Live</a>:<div className='hidden'></div>
-                    }
-                    {
-                      project.github ?
-                      <a href={project.github} target='_blank' className='p-2 bg-blue-950 rounded-md text-white font-semibold text-sm'>Source Code</a>:<div className='hidden'></div>
-                    }
+                </div>
+                <div className='flex-1 flex flex-col justify-between p-6 sm:p-8'>
+                  <div className='mb-6 sm:mb-8'>
+                    <div className='flex items-center justify-between mb-4'>
+                      <h1 className='font-bold text-xl sm:text-2xl text-blue-950 capitalize'>{project.name}</h1>
+                    </div>
+                    <p className='text-gray-600 font-medium text-sm sm:text-base leading-relaxed line-clamp-4'>
+                      {project.desc}
+                    </p>
+                  </div>
+                  <div className='flex items-center gap-3 sm:gap-4 mt-auto pt-6 border-t border-sky-900/10'>
+                    {project.link ? (
+                      <a href={project.link} target='_blank' rel='noreferrer' className='flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 bg-gradient-to-r from-sky-400 to-blue-500 rounded-lg text-white font-bold text-xs sm:text-sm hover:from-sky-300 hover:to-blue-400 transition-colors shadow-lg'>
+                        <FaExternalLinkAlt /> Live Demo
+                      </a>
+                    ) : null}
+
+                    {project.github ? (
+                      <a href={project.github} target='_blank' rel='noreferrer' className='flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 bg-white/50 hover:bg-white/80 rounded-lg text-blue-950 font-bold text-xs sm:text-sm border border-blue-950/20 transition-all shadow-sm'>
+                        <FaGithub size={16} /> Source
+                      </a>
+                    ) : null}
                   </div>
                 </div>
               </div>
