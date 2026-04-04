@@ -6,7 +6,7 @@ const { Client } = require('@notionhq/client');
 
 const app = express();
 const port = process.env.PORT || 5000;
-const cache = new NodeCache({ stdTTL: 3600 }); // Cache for 60 seconds for instant Notion updates
+const cache = new NodeCache({ stdTTL: 60 }); // Cache for 60 seconds for instant Notion updates
 
 app.use(cors());
 app.use(express.json());
