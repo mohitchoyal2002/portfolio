@@ -1,55 +1,75 @@
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { useProfile } from '../context/DataProvider'
-import defaultProjectImage from '../assets/project.png'
+import { useState } from 'react';
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi';
+import { Project, useProfile } from '../context/DataProvider';
+import ProjectArtwork from './ProjectArtwork';
+import SectionHeading from './SectionHeading';
+import TechTags from './TechTags';
+
+type Kind = 'independent' | 'professional' | 'earlier';
+export const projectInfo = (name: string): { kind: Kind; domain: string; theme: string; steps: string[] } => {
+  const key = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const known: Record<string, { kind: Kind; domain: string; theme: string; steps: string[] }> = {
+    orbitflow: { kind: 'independent', domain: 'Lead & client workflows', theme: 'orbit', steps: ['Capture', 'Connect', 'Follow up'] },
+    aonemart: { kind: 'independent', domain: 'Mobile commerce', theme: 'mart', steps: ['Inventory', 'Orders', 'Rewards'] },
+    chartrequest: { kind: 'professional', domain: 'Healthcare & AI', theme: 'chart', steps: ['Request', 'Extract', 'Review'] },
+    cxwork: { kind: 'professional', domain: 'CRM & integrations', theme: 'crm', steps: ['Email', 'Meetings', 'Salesforce'] },
+    nxzsound: { kind: 'professional', domain: 'Music & audio APIs', theme: 'music', steps: ['Tracks', 'Playlists', 'Playback'] },
+    uphance: { kind: 'professional', domain: 'Inventory & production', theme: 'inventory', steps: ['Inventory', 'Sales', 'Production'] },
+    teslaclone: { kind: 'earlier', domain: 'Frontend practice', theme: 'earlier', steps: ['React', 'Layouts', 'Components'] },
+    eassessmentapp: { kind: 'earlier', domain: 'Full-stack assessment', theme: 'earlier', steps: ['Students', 'Assessments', 'Results'] },
+    ecommerceapp: { kind: 'earlier', domain: 'Full-stack commerce', theme: 'mart', steps: ['Sellers', 'Products', 'Customers'] },
+  };
+  return known[key] || { kind: 'independent', domain: 'Software project', theme: 'orbit', steps: ['Interface', 'APIs', 'Data'] };
+};
+const filters = [
+  { key: 'selected', label: 'Selected work' },
+  { key: 'independent', label: 'Independent builds' },
+  { key: 'professional', label: 'Professional work' },
+  { key: 'earlier', label: 'Earlier projects' },
+] as const;
+type Filter = typeof filters[number]['key'];
 
 const Projects = () => {
   const { projects } = useProfile();
+  const [filter, setFilter] = useState<Filter>('selected');
+  const visible = projects.filter(project => filter === 'selected' ? projectInfo(project.name).kind !== 'earlier' : projectInfo(project.name).kind === filter);
+  const renderProject = (project: Project) => {
+    const info = projectInfo(project.name);
+    const sentences = project.desc.split(/(?<=[.!?])\s+/);
+    const summary = sentences[0];
+    const detail = sentences.slice(1).join(' ');
+    return (
+      <article key={project.name} className={'project-card project-' + info.theme}>
+        <ProjectArtwork name={project.name} theme={info.theme} domain={info.domain} steps={info.steps} />
+        <div className='project-body'>
+          <div className='project-meta'><span>{info.kind === 'professional' ? 'Professional contribution' : info.kind === 'earlier' ? 'Earlier project' : 'Independent build'}</span><span>{info.domain}</span></div>
+          <h3>{project.name}</h3>
+          <p className='project-summary'>{summary}</p>
+          {detail && <details className='project-details'><summary>More about my work</summary><p>{detail}</p></details>}
+          <TechTags tech={project.tech || ''} />
+          <div className='project-links'>
+            {project.link && <a href={project.link} target='_blank' rel='noopener noreferrer' aria-label={'Visit ' + project.name + ' website (opens in a new tab)'}>Visit website <FiArrowUpRight aria-hidden='true' /></a>}
+            {project.github && <a href={project.github} target='_blank' rel='noopener noreferrer' aria-label={'View ' + project.name + ' source on GitHub (opens in a new tab)'}><FiGithub aria-hidden='true' /> View code <FiArrowUpRight aria-hidden='true' /></a>}
+            {!project.link && !project.github && <a href='#meeting'>Discuss this work <FiArrowUpRight aria-hidden='true' /></a>}
+          </div>
+        </div>
+      </article>
+    );
+  };
   return (
-    <div id='projects' className='py-24 px-6 bg-gradient-to-br from-blue-50 to-sky-200 font-nunito w-full'>
-      <h1 className='text-4xl font-extrabold text-blue-950 text-center mb-16 tracking-tight'>Featured Projects</h1>
-      <div className='flex flex-wrap items-stretch gap-10 justify-center w-full max-w-7xl mx-auto'>
-        {
-          projects.map((project: any, index: any) => {
-            return (
-              <div key={index} className='w-full max-w-md mx-auto group bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl hover:bg-white/60 flex flex-col'>
-                <div className='h-56 sm:h-64 w-full overflow-hidden relative'>
-                  <img src={project.image || defaultProjectImage} alt={project.name} className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-110' />
-                  <div className='absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 sm:p-6'>
-                    <span className='text-white font-semibold flex flex-wrap gap-2'>
-                      {project.tech.split(', ').map((t: any) => <span key={t} className='px-2 py-1 bg-white/20 rounded-md text-xs backdrop-blur-sm shadow-sm'>{t}</span>)}
-                    </span>
-                  </div>
-                </div>
-                <div className='flex-1 flex flex-col justify-between p-6 sm:p-8'>
-                  <div className='mb-6 sm:mb-8'>
-                    <div className='flex items-center justify-between mb-4'>
-                      <h1 className='font-bold text-xl sm:text-2xl text-blue-950 capitalize'>{project.name}</h1>
-                    </div>
-                    <p className='text-gray-600 font-medium text-sm sm:text-base leading-relaxed line-clamp-4'>
-                      {project.desc}
-                    </p>
-                  </div>
-                  <div className='flex items-center gap-3 sm:gap-4 mt-auto pt-6 border-t border-sky-900/10'>
-                    {project.link ? (
-                      <a href={project.link} target='_blank' rel='noreferrer' className='flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 bg-gradient-to-r from-sky-400 to-blue-500 rounded-lg text-white font-bold text-xs sm:text-sm hover:from-sky-300 hover:to-blue-400 transition-colors shadow-lg'>
-                        <FaExternalLinkAlt /> Live Demo
-                      </a>
-                    ) : null}
-
-                    {project.github ? (
-                      <a href={project.github} target='_blank' rel='noreferrer' className='flex-1 flex items-center justify-center gap-2 py-2.5 sm:py-3 bg-white/50 hover:bg-white/80 rounded-lg text-blue-950 font-bold text-xs sm:text-sm border border-blue-950/20 transition-all shadow-sm'>
-                        <FaGithub size={16} /> Source
-                      </a>
-                    ) : null}
-                  </div>
-                </div>
-              </div>
-            )
-          })
-        }
+    <section id='projects' className='section work-section'>
+      <div className='shell'>
+        <SectionHeading number='01' label='Selected work' title='From idea to working product.' description='Independent builds and production contributions across healthcare, CRM, commerce, and music.' />
+        <div className='project-filters' role='group' aria-label='Filter projects'>
+          {filters.map(item => <button key={item.key} type='button' aria-pressed={filter === item.key} onClick={() => setFilter(item.key)}>{item.label}</button>)}
+        </div>
+        <p className='sr-only' aria-live='polite'>{visible.length} projects shown for {filters.find(item => item.key === filter)?.label}</p>
+        <div className='project-grid'>{visible.map(renderProject)}</div>
+        {!visible.length && <p className='empty-state'>More work is on the way. Let’s talk about what I’m building.</p>}
+        <div className='section-footnote'><span>Want to explore the architecture or my contribution?</span><a href='#meeting'>Let’s walk through it <FiArrowUpRight aria-hidden='true' /></a></div>
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default Projects
+export default Projects;

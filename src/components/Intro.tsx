@@ -1,49 +1,45 @@
-import bg from '../assets/background.jpg'
-import mohit from '../assets/mohit-linkedin.jpg'
-import { useProfile } from '../context/DataProvider'
+import { FiArrowDown, FiArrowUpRight, FiCode, FiGithub, FiLinkedin, FiMapPin } from 'react-icons/fi';
+import mohit from '../assets/mohit-linkedin.jpg';
+import { useProfile } from '../context/DataProvider';
 
 const Intro = () => {
   const { intro } = useProfile();
-  const role = intro?.role || 'Senior Software Developer';
-  const experience = intro?.experience || '4 years of total experience';
-  const location = intro?.location || 'Indore, India';
-  const summary = intro?.summary || 'Building full-stack applications, REST APIs, and AI workflows with Ruby on Rails, React, Next.js, and PostgreSQL.';
-
   return (
-    <div id='home' className='relative min-h-screen w-full flex items-center justify-center font-nunito overflow-hidden' style={{ backgroundImage: `url('${bg}')`, backgroundRepeat: 'no-repeat', backgroundPosition: 'center', backgroundSize: 'cover' }}>
-      {/* Gradient Overlay for better contrast */}
-      <div className='absolute inset-0 bg-gradient-to-br from-white/95 via-sky-50/80 to-blue-100/60 backdrop-blur-[2px] z-0'></div>
-
-      <div className='relative z-10 flex flex-col-reverse lg:flex-row md:flex-row items-center justify-center gap-8 md:gap-16 lg:gap-32 w-full max-w-6xl px-4 sm:px-6 py-24 lg:py-32'>
-        <div className='flex flex-col items-center lg:items-start text-center lg:text-left'>
-          <h2 className='text-xl lg:text-2xl text-gray-500 font-semibold mb-2 tracking-wide uppercase'>Hello World, I'm</h2>
-          <h1 className='text-4xl sm:text-5xl lg:text-7xl font-extrabold text-blue-950 mb-4 tracking-tight drop-shadow-sm'>
-            Mohit <span className='text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-blue-600'>Choyal</span>
-          </h1>
-          <p className='text-xl lg:text-2xl text-blue-900 font-bold mb-3'>{role}</p>
-          <p className='text-lg lg:text-xl text-gray-600 max-w-lg mb-8 leading-relaxed'>
-            <strong className='text-blue-900'>{experience}</strong> · {location}
-            <br />
-            {summary}
-          </p>
-          <div className='flex flex-wrap items-center justify-center lg:justify-start gap-4'>
-            <a href="#meeting" className='px-8 py-3 text-white text-lg rounded-full bg-gradient-to-r from-sky-400 to-blue-500 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(14,165,233,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700'>
-              Schedule a meeting
-            </a>
-            <a href='#projects' className='px-8 py-3 text-blue-950 text-lg rounded-full bg-white/50 backdrop-blur-md border border-white/60 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:bg-white hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700'>
-              View Projects
-            </a>
+    <section id='home' className='hero' aria-labelledby='hero-title'>
+      <div className='hero-grid' aria-hidden='true' />
+      <div className='shell hero-layout'>
+        <div className='hero-copy'>
+          <p className='eyebrow hero-introduction'>Hi, I’m {intro.name || 'Mohit Choyal'} <span className='intro-line' /></p>
+          <h1 id='hero-title'>Thoughtful code.<br /><span>Useful products.</span></h1>
+          <p className='hero-role'>{intro.role}</p>
+          <p className='hero-summary'>{intro.summary}</p>
+          <div className='hero-buttons'>
+            <a href='#projects' className='button button-lime'>Explore my work <FiArrowUpRight aria-hidden='true' /></a>
+            <a href='#meeting' className='button button-outline'>Schedule a meeting <FiArrowUpRight aria-hidden='true' /></a>
+          </div>
+          <div className='hero-facts'>
+            <span><strong>{intro.experience}</strong></span>
+            <span><FiMapPin aria-hidden='true' />{intro.location}</span>
+          </div>
+          <div className='hero-socials'>
+            <a href='https://github.com/mohitchoyal2002' target='_blank' rel='noopener noreferrer'><FiGithub aria-hidden='true' /> GitHub <FiArrowUpRight aria-hidden='true' /></a>
+            <a href='https://www.linkedin.com/in/mohit-choyal/' target='_blank' rel='noopener noreferrer'><FiLinkedin aria-hidden='true' /> LinkedIn <FiArrowUpRight aria-hidden='true' /></a>
           </div>
         </div>
-
-        <div className='relative group mb-8 lg:mb-0'>
-          {/* Glowing ring effect */}
-          <div className='absolute -inset-2 bg-gradient-to-tr from-sky-300 to-blue-500 rounded-full blur-lg opacity-40 group-hover:opacity-75 transition duration-500'></div>
-          <img src={mohit} alt="Mohit Choyal" width={400} height={400} className='relative h-64 w-64 md:h-80 md:w-80 lg:h-96 lg:w-96 object-cover rounded-full shadow-[0_20px_50px_rgba(8,_112,_184,_0.3)] border-4 border-white transition-transform duration-700 group-hover:scale-105' />
+        <div className='hero-visual'>
+          <div className='portrait-decoration' aria-hidden='true'><span>+</span><span>+</span><span>+</span></div>
+          <div className='portrait-card'>
+            <div className='portrait-topline'><span className='status-dot' />Open to engineering opportunities<FiArrowUpRight aria-hidden='true' /></div>
+            <div className='portrait-image'><img src={mohit} alt='Mohit Choyal, Senior Software Developer' width={400} height={400} /></div>
+            <div className='portrait-caption'><span>Build with intention.<br /><strong>Ship with confidence.</strong></span><FiCode aria-hidden='true' /></div>
+          </div>
+          <div className='stack-note'><span className='note-icon' aria-hidden='true'>↗</span><div><span>MY CORE STACK</span><strong>Rails · React · Next.js</strong><small>PostgreSQL & API integrations</small></div></div>
         </div>
       </div>
-    </div>
-  )
-}
+      <div className='shell hero-bottom'><a href='#projects'>Scroll to explore <FiArrowDown aria-hidden='true' /></a><span>Backend thinking. Frontend craft.</span></div>
+      <div className='stack-strip'><div className='shell'><span className='stack-strip-label'>BUILT WITH EXPERIENCE IN</span><span>Ruby on Rails</span><span>React / Next.js</span><span>PostgreSQL</span><span>REST APIs</span><span>AI integrations</span></div></div>
+    </section>
+  );
+};
 
-export default Intro
+export default Intro;

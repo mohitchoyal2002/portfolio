@@ -1,38 +1,54 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import savedProfile from '../assets/skills.json';
 
-const DataContext = createContext<any>(null);
-
-export const DataProvider = ({ children }: { children: React.ReactNode }) => {
-  const [data, setData] = useState<any>(null);
-
-  useEffect(() => {
-    fetch(`/api/profile`)
-      .then(res => res.json())
-      .then(res => setData(res))
-      .catch(err => console.error("Failed to fetch dynamic profile data", err));
-  }, []);
-
-  // Skeleton loader while fetching
-  if (!data) {
-    return (
-      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-tr from-sky-50 to-indigo-100 font-nunito px-6 overflow-hidden">
-        <div className="relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 mb-6 sm:mb-8">
-          <div className="absolute inset-0 bg-sky-400 rounded-full animate-ping opacity-75"></div>
-          <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-sky-500 to-indigo-600 rounded-full shadow-lg shadow-sky-500/50 flex items-center justify-center">
-            <span className="text-white font-extrabold text-xl sm:text-2xl tracking-tighter">MC</span>
-          </div>
-        </div>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-600 to-indigo-600 mb-3 text-center leading-tight">
-          Welcome to my Workspace
-        </h2>
-        <p className="text-sky-700/70 font-bold animate-pulse text-sm sm:text-base tracking-widest uppercase text-center">
-          Crafting the digital experience...
-        </p>
-      </div>
-    );
-  }
-
-  return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
+export interface Project {
+  name: string; desc: string; tech: string;
+  github: string | null; link: string | null; image: string | null;
 }
+export interface Experience {
+  employer: string; position: string; duration: string;
+  work: string; tech: string; logo: string | null;
+}
+export interface Education { degree: string; institute: string; duration: string; }
+interface Profile {
+  projects: Project[]; experience: Experience[]; education: Education[];
+  frontend: string[]; backend: string[]; other: string[];
+  intro: { name: string; role: string; experience: string; location: string; summary: string };
+  aboutMe: string;
+}
+
+const fallback: Profile = savedProfile;
+const DataContext = createContext<Profile>(fallback);
+
+export const DataProvider = ({ children }: { children: ReactNode }) => {
+  // Render immediately, then refresh from the connected profile source.
+  const [data, setData] = useState<Profile>(fallback);
+  useEffect(() => {
+    const controller = new AbortController();
+    const refresh = async () => {
+      try {
+        const response = await fetch('/api/profile', { signal: controller.signal });
+        if (!response.ok) return;
+        const incoming = await response.json();
+        if (!incoming || typeof incoming !== 'object' || controller.signal.aborted) return;
+        setData({
+          projects: Array.isArray(incoming.projects) ? incoming.projects : fallback.projects,
+          experience: Array.isArray(incoming.experience) ? incoming.experience : fallback.experience,
+          education: Array.isArray(incoming.education) ? incoming.education : fallback.education,
+          frontend: Array.isArray(incoming.frontend) ? incoming.frontend : fallback.frontend,
+          backend: Array.isArray(incoming.backend) ? incoming.backend : fallback.backend,
+          other: Array.isArray(incoming.other) ? incoming.other : fallback.other,
+          intro: { ...fallback.intro, ...(incoming.intro && typeof incoming.intro === 'object' ? incoming.intro : {}) },
+          aboutMe: typeof incoming.aboutMe === 'string' && incoming.aboutMe ? incoming.aboutMe : fallback.aboutMe,
+        });
+      } catch {
+        // Keep the saved profile visible if the source is unavailable.
+      }
+    };
+    void refresh();
+    return () => controller.abort();
+  }, []);
+  return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
+};
 
 export const useProfile = () => useContext(DataContext);
