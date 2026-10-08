@@ -7,6 +7,7 @@ import Projects from '../components/Projects'
 import ContactMe from '../components/ContactMe'
 import Experience from '../components/Experience'
 import Education from '../components/Education'
+import ScheduleMeeting from '../components/ScheduleMeeting'
 
 const MainPage = () => {
   return (
@@ -18,6 +19,7 @@ const MainPage = () => {
       <Projects />
       <Experience />
       <Education />
+      <ScheduleMeeting />
       <ContactMe />
     </div>
   )

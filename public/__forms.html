@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head><meta charset="UTF-8" /><meta name="robots" content="noindex" /><title>Meeting request</title></head>
+  <body>
+    <form name="recruiter-meeting" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="recruiter-meeting" />
+      <input type="hidden" name="subject" value="New recruiter meeting request — Mohit Choyal Portfolio (%{submissionId})" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="company" />
+      <select name="meeting_type"><option>Recruiter introduction</option><option>Technical interview</option><option>Hiring discussion</option><option>Other</option></select>
+      <select name="duration"><option>15 minutes</option><option>30 minutes</option><option>45 minutes</option><option>60 minutes</option></select>
+      <select name="timezone"><option>Asia/Kolkata</option><option>UTC</option><option>America/New_York</option><option>America/Los_Angeles</option><option>Europe/London</option><option>Europe/Berlin</option><option>Asia/Dubai</option><option>Asia/Singapore</option><option>Australia/Sydney</option></select>
+      <input type="date" name="date" />
+      <input type="time" name="time" />
+      <input type="hidden" name="meeting_utc" />
+      <input type="url" name="meeting_link" />
+      <textarea name="notes"></textarea>
+      <input type="checkbox" name="consent" />
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

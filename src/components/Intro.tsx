@@ -27,8 +27,8 @@ const Intro = () => {
             {summary}
           </p>
           <div className='flex flex-wrap items-center justify-center lg:justify-start gap-4'>
-            <a href="#contact-me" className='px-8 py-3 text-white text-lg rounded-full bg-gradient-to-r from-sky-400 to-blue-500 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(14,165,233,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700'>
-              Let's Talk
+            <a href="#meeting" className='px-8 py-3 text-white text-lg rounded-full bg-gradient-to-r from-sky-400 to-blue-500 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(14,165,233,0.3)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700'>
+              Schedule a meeting
             </a>
             <a href='#projects' className='px-8 py-3 text-blue-950 text-lg rounded-full bg-white/50 backdrop-blur-md border border-white/60 font-bold transition-all duration-300 transform hover:-translate-y-1 hover:bg-white hover:shadow-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-700'>
               View Projects
