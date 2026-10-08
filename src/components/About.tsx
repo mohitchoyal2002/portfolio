@@ -1,4 +1,4 @@
-import avatar from '../assets/avatar.png'
+import mohit from '../assets/mohit-linkedin.jpg'
 import { useProfile } from '../context/DataProvider'
 
 const About = () => {
@@ -13,7 +13,7 @@ const About = () => {
       <div className='flex flex-wrap items-center justify-center gap-10 lg:gap-16 w-full max-w-6xl z-10'>
         <div className='relative group'>
           <div className='absolute -inset-1 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-75 transition duration-500'></div>
-          <img src={avatar} alt="Avatar" className='relative h-64 w-64 object-cover rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105 border-4 border-white' />
+          <img src={mohit} alt="Mohit Choyal" width={400} height={400} loading="lazy" className='relative h-64 w-64 object-cover rounded-full shadow-2xl transition-transform duration-500 group-hover:scale-105 border-4 border-white' />
         </div>
         <div className='bg-white/60 backdrop-blur-xl border border-white/50 rounded-2xl p-6 md:p-8 lg:p-12 text-base sm:text-lg font-medium text-blue-950/80 w-full lg:w-1/2 shadow-xl hover:shadow-2xl transition-all duration-300 leading-relaxed text-left md:text-justify group'>
           <p className='transform transition duration-500 group-hover:-translate-y-1'>{aboutMe}</p>

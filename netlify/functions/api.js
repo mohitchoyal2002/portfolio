@@ -99,15 +99,29 @@ router.get('/profile', async (req, res) => {
         else payload.other.push(name);
     });
 
+    const introFields = {};
+    const introKeys = new Map([
+        ['introRole', 'role'],
+        ['introExperience', 'experience'],
+        ['introLocation', 'location'],
+        ['introSummary', 'summary']
+    ]);
+
     profResults.forEach(row => {
         const key = safeGetText(row.properties.Key);
         const val = safeGetText(row.properties.Value);
-        if (key === 'intro' && val) {
+        if (introKeys.has(key) && val) {
+            introFields[introKeys.get(key)] = val;
+        } else if (key === 'intro' && val) {
             try { payload.intro = JSON.parse(val); } catch(e) { payload.intro = { name: 'Mohit', role: 'Frontend Developer' }; }
         } else if (key === 'aboutMe') {
             payload.aboutMe = val;
         }
     });
+
+    if (Object.keys(introFields).length > 0) {
+        payload.intro = { ...payload.intro, ...introFields };
+    }
 
     cache.set('notion_profile', payload);
     return res.json(payload);
