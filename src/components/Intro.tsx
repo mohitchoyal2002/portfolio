@@ -1,5 +1,5 @@
 import { FiArrowDown, FiArrowUpRight, FiCode, FiGithub, FiLinkedin, FiMapPin } from 'react-icons/fi';
-import mohit from '../assets/mohit-linkedin.jpg';
+import mohit from '../assets/mohit-portfolio-dark.webp';
 import { useProfile } from '../context/DataProvider';
 
 const Intro = () => {
